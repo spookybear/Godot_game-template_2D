@@ -1,9 +1,9 @@
 extends Node2D
-
+onready var hud = get_node("/root/Hud")
 
 
 func _ready():
-	#call_deferred("load_room")
+	
 	pass
 func _input(event: InputEvent) -> void:
 	Global.connect("save_game",self,"save_room")

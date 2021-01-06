@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 #script location--project settings--autoload
 var score = 0
 

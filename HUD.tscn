@@ -1,14 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://save.gd" type="Script" id=2]
+[ext_resource path="res://load.gd" type="Script" id=3]
 
-[node name="HUD" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="score" type="Label" parent="."]
 margin_left = 26.1005
@@ -16,3 +13,27 @@ margin_top = 26.4487
 margin_right = 90.1005
 margin_bottom = 40.4487
 text = "score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save" type="Button" parent="."]
+margin_left = 98.0
+margin_top = 25.0
+margin_right = 148.0
+margin_bottom = 45.0
+text = "Save"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="load" type="Button" parent="."]
+margin_left = 184.0
+margin_top = 25.0
+margin_right = 234.0
+margin_bottom = 45.0
+text = "Load"
+script = ExtResource( 3 )
+[connection signal="pressed" from="save" to="save" method="_on_save_pressed"]
+[connection signal="pressed" from="load" to="load" method="_on_load_pressed"]

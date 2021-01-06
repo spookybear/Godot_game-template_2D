@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://save.gd" type="Script" id=1]
 [ext_resource path="res://coin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://TempleTIles.png" type="Texture" id=4]
-[ext_resource path="res://load.gd" type="Script" id=5]
 [ext_resource path="res://world.gd" type="Script" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -39,33 +37,15 @@ script = ExtResource( 6 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 151.466, 275.306 )
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 21.3574, -114.796 )
+current = true
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 compatibility_mode = true
 format = 1
-tile_data = PoolIntArray( 458750, 0, 0, 393216, 0, 0, 393219, 0, 0, 393222, 0, 0, 393225, 0, 0, 393228, 0, 0, 393231, 0, 0 )
-
-[node name="load" type="Button" parent="."]
-margin_left = 853.76
-margin_top = 25.301
-margin_right = 942.76
-margin_bottom = 45.301
-text = "load"
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="save" type="Button" parent="."]
-margin_left = 637.77
-margin_top = 24.3878
-margin_right = 751.77
-margin_bottom = 44.3878
-text = "save"
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+tile_data = PoolIntArray( 458750, 0, 0, 393216, 0, 0, 393219, 0, 0, 393222, 0, 0, 393225, 0, 0, 393228, 0, 0, 393231, 0, 0, 393234, 0, 0, 393237, 0, 0, 393240, 0, 0, 393243, 0, 0, 393246, 0, 0 )
 
 [node name="coin" parent="." instance=ExtResource( 2 )]
 position = Vector2( 335, 340 )
@@ -84,5 +64,3 @@ position = Vector2( 696.081, 246.99 )
 
 [node name="coin6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 764.984, 175.255 )
-[connection signal="pressed" from="load" to="load" method="_on_load_pressed"]
-[connection signal="pressed" from="save" to="save" method="_on_save_pressed"]
