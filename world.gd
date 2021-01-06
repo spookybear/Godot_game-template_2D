@@ -3,7 +3,7 @@ onready var hud = get_node("/root/Hud")
 
 
 func _ready():
-	
+	hud.offset.x = 0
 	pass
 func _input(event: InputEvent) -> void:
 	Global.connect("save_game",self,"save_room")
