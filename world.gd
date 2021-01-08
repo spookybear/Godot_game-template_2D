@@ -1,13 +1,13 @@
 extends Node2D
-onready var hud = get_node("/root/Hud")
+onready var hud = get_node("/root/world/Hud")
 
 
 func _ready():
 	hud.offset.x = 0
 	pass
 func _input(event: InputEvent) -> void:
-	Global.connect("save_game",self,"save_room")
-	Global.connect("load_room",self,"load_room")
+	Global.connect("save_coin",self,"save_room")
+	Global.connect("load_coin",self,"load_room")
 	
 
 func load_room():
@@ -70,12 +70,6 @@ func save_room():
 	save_game.close()
 
 
-func _on_save_pressed() -> void:
-	save_room()
 
-
-func _on_load_pressed() -> void:
-	Global.emit_signal("load_score")
-	load_room()
 
 

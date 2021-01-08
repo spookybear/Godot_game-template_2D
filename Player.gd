@@ -4,23 +4,15 @@ var velocity = Vector2(0,0)
 var coins = 0
 const SPEED = 200
 const GRAVITY = 75
-const JUMPFORCE = -1700
-onready var animation = $AnimatedSprite
+func _input(event: InputEvent) -> void:
+	Global.connect("load_player",self,"load_game")
+	Global.connect("save_player",self,"save")
+
 func _process(delta: float) -> void:
 		velocity.y = velocity.y + GRAVITY
 		velocity = move_and_slide(velocity,Vector2.UP)
 		velocity.x = lerp(velocity.x,0,0.1)			
-func save():
-	var save_dict = {
-		"filename" : get_filename(),
-		"parent" : get_parent().get_path(),
-		"pos_x" : position.x, # Vector2 is not supported by JSON
-		"pos_y" : position.y,
-#		"speed" : speed,
-#		"direction_x" : direction.x,
-#		"direction_y" : direction.y
-	}
-	return save_dict
+
 	
 	
 func _physics_process(delta):
@@ -28,13 +20,32 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = SPEED
-#		$AnimatedSprite.play("run")
-#		$AnimatedSprite.flip_h = false
-
+		
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x = - SPEED
-#		$AnimatedSprite.play("run")
-#		$AnimatedSprite.flip_h = true
-#	else:
-#		$AnimatedSprite.play("idle")
-	
+		
+func to_dictionary():
+	return {
+		"position" : [position.x, position.y],
+
+		}
+func from_dictionary(data):
+	position = Vector2(data.position[0], data.position[1])
+
+#
+func save():
+	var data = {
+		"player" : to_dictionary(),
+		}
+	var file = File.new()
+	file.open("user://save_position.save", File.WRITE)
+	var json = to_json(data)
+	file.store_line(json)
+	file.close()
+
+func load_game():
+	var file = File.new()
+	file.open("user://save_position.save", File.READ)
+	var data = parse_json(file.get_as_text())
+	file.close()
+	from_dictionary(data.player)

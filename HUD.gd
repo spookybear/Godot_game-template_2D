@@ -1,8 +1,10 @@
 extends CanvasLayer
+
 #script location--project settings--autoload
-var score = 0
+onready var score = 0
 
 func _ready() -> void:
+	
 	pass
 func _input(event: InputEvent) -> void:
 	Global.connect("collect",self,"update")
@@ -41,3 +43,14 @@ func load_save_file():
 	
 	print(score)
 	file.close()
+
+func _on_save_pressed() -> void:
+	Global.emit_signal("save_player")
+	Global.emit_signal("save_coin")
+	save_game()
+
+
+func _on_load_pressed() -> void:
+	Global.emit_signal("load_player")
+	Global.emit_signal("load_coin")
+	load_save_file()

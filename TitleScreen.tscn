@@ -11,10 +11,10 @@ __meta__ = {
 }
 
 [node name="start game" type="Button" parent="."]
-margin_left = 265.872
-margin_top = 104.652
-margin_right = 670.872
-margin_bottom = 179.652
+margin_left = 321.026
+margin_top = 248.902
+margin_right = 726.026
+margin_bottom = 323.902
 text = "start game"
 __meta__ = {
 "_edit_use_anchors_": false
