@@ -38,7 +38,7 @@ script = ExtResource( 6 )
 [node name="Hud" parent="." instance=ExtResource( 1 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 151.466, 275.306 )
+position = Vector2( 170.944, 273.808 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 21.3574, -114.796 )
@@ -73,3 +73,9 @@ position = Vector2( 884.825, 211.332 )
 
 [node name="coin8" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1186.5, 334.137 )
+
+[node name="coin9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1356.03, 331.314 )
+
+[node name="coin10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1514.85, 329.816 )

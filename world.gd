@@ -6,15 +6,12 @@ func _ready():
 	hud.offset.x = 0
 	pass
 func _input(event: InputEvent) -> void:
-	Global.connect("save_coin",self,"save_room")
-	Global.connect("load_coin",self,"load_room")
+	Global.connect("save_coin",self,"save_world")
+	Global.connect("load_coin",self,"load_world")
 	
 
-func load_room():
-	"""
-	Addapted from:
-		https://docs.godotengine.org/en/3.1/tutorials/io/saving_games.html
-	"""
+func load_world():
+	
 	var save_game = File.new()
 	if not save_game.file_exists("user://" + name + ".save"):
 		return # Error! We don't have a save to load.
@@ -34,11 +31,6 @@ func load_room():
 	while not save_game.eof_reached():
 		var current_line = parse_json(save_game.get_line())
 		
-		"""
-		Lines 37 & 38 are not in the documentation as of 03/10/19.
-		They are necessary to avoid a null error. See:
-			https://godotengine.org/qa/16807/godot-3-base-nill-while-parsing-json-file
-		"""
 		if current_line == null:
 			continue
 		
@@ -46,17 +38,17 @@ func load_room():
 		var new_object = load(current_line["filename"]).instance()
 		get_node(current_line["parent"]).add_child(new_object)
 		new_object.position = Vector2(current_line["pos_x"], current_line["pos_y"])
-		#new_object.direction = Vector2(current_line["direction_x"], current_line["direction_y"])
+		
 		
 		# Now we set the remaining variables.
 		for i in current_line.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "direction_x" or i == "direction_y":
+			if i == "filename" or i == "parent"or i == "pos_x" or i == "pos_y":
 				continue
 			new_object.set(i, current_line[i])
 	
 	save_game.close()
 
-func save_room():
+func save_world():
 	var save_game = File.new()
 	save_game.open("user://" + name + ".save", File.WRITE)
 	

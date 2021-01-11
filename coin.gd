@@ -5,10 +5,8 @@ func save():
 		"filename" : get_filename(),
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Vector2 is not supported by JSON
-		"pos_y" : position.y,
-#		"speed" : speed,
-		"direction_x" : direction.x,
-		"direction_y" : direction.y
+		"pos_y" : position.y
+#		
 	}
 	return save_dict
 

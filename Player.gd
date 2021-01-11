@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0,0)
-var coins = 0
+
 const SPEED = 200
 const GRAVITY = 75
 func _input(event: InputEvent) -> void:
@@ -23,7 +23,7 @@ func _physics_process(delta):
 		
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x = - SPEED
-		
+#this is the code that saves the player position in the game		
 func to_dictionary():
 	return {
 		"position" : [position.x, position.y],
